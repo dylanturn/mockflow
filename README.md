@@ -15,7 +15,8 @@ The API spec is available at [airflow.apache.org/docs/apache-airflow/stable/_api
 - [x] Variables
 - [x] Pools
 - [x] Providers
-
+- [x] Healthcheck
+ 
 ## Installation
 
 ```bash

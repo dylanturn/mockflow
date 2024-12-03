@@ -96,6 +96,11 @@ class Variable(BaseModel):
     value: str
     description: Optional[str] = None
 
+class VariableCollection(BaseModel):
+    """Collection of variables with metadata."""
+    variables: List[Variable]
+    total_entries: int
+
 class Connection(BaseModel):
     conn_id: str
     conn_type: str
@@ -103,8 +108,13 @@ class Connection(BaseModel):
     port: Optional[int] = None
     login: Optional[str] = None
     password: Optional[str] = None
-    schema: Optional[str] = None
+    connection_schema: Optional[str] = None
     extra: Optional[dict] = None
+
+class ConnectionCollection(BaseModel):
+    """Collection of connections with metadata."""
+    connections: List[Connection]
+    total_entries: int
 
 class XCom(BaseModel):
     """XCom value for cross-task communication."""

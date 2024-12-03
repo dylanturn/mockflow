@@ -21,6 +21,16 @@ def create_app(instance_id: str) -> FastAPI:
     app = FastAPI(title=f"Airflow Mock API - Instance {instance_id}")
     instance_store = store.get_instance(instance_id)
 
+    @app.get("/health")
+    async def health_check():
+        """Check the health of the API."""
+        return {
+            "status": "healthy",
+            "instance_id": instance_id,
+            "timestamp": datetime.utcnow().isoformat(),
+            "version": "1.0.0"
+        }
+
     @app.get("/api/v1/dags", response_model=DAGCollection)
     async def list_dags(
         limit: int = Query(100, ge=1),
